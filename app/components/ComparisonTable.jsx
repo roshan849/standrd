@@ -10,7 +10,7 @@ export default function ComparisonTable() {
         </p>
       </div>
 
-      <div className="max-w-[1000px] mx-auto overflow-x-auto">
+      <div className="max-w-[1000px] mx-auto overflow-x-auto hide-scrollbar">
         <table className="w-full border-collapse bg-[#fafafa] dark:bg-[#1a1a1a] rounded-xl overflow-hidden">
           <thead className="bg-[#f5f5f5] dark:bg-[#1a1a1a]">
             <tr>

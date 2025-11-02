@@ -4,11 +4,19 @@ export default function Footer() {
       <p>&copy; {new Date().getFullYear()} STANDRD Web Corp — Professional web design for local businesses</p>
       <p className="mt-2">
         <a 
+          href="mailto:roshan@standrdwebcorp.com"
+          className="text-[#FF6B35] font-semibold hover:underline"
+        >
+          roshan@standrdwebcorp.com 
+        </a>
+        /
+        <a 
           href="mailto:ashraf@standrdwebcorp.com"
           className="text-[#FF6B35] font-semibold hover:underline"
         >
-          roshan@standrdwebcorp.com / ashraf@standrdwebcorp.com
+           ashraf@standrdwebcorp.com
         </a>
+        
       </p>
       
     </footer>
