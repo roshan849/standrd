@@ -1,4 +1,41 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
 export default function HowItWorks() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  }
+
+  const stepVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const listItemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.3
+      }
+    }
+  }
+
   const steps = [
     {
       number: 'STEP 01',
@@ -40,56 +77,117 @@ export default function HowItWorks() {
 
   return (
     <section className="py-24 px-8 max-w-[1280px] mx-auto">
-      <div className="text-center mb-20">
+      <motion.div 
+        className="text-center mb-20"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold tracking-tight text-[#0a0a0a] dark:text-white">
           Get your new website in 3 simple steps
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-[680px] mx-auto">
           No confusion. No surprises. Just a straightforward process from start to finish.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col gap-20">
+      <motion.div 
+        className="flex flex-col gap-20"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
         {steps.map((step, index) => (
-          <div
+          <motion.div
             key={index}
+            variants={stepVariants}
             className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-[1100px] mx-auto ${
               index % 2 === 1 ? 'lg:flex-row-reverse' : ''
             }`}
           >
-            <div className={`p-4 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-              <div className="text-base font-bold text-[#FF6B35] mb-4 tracking-wide">
+            <motion.div 
+              className={`p-4 ${index % 2 === 1 ? 'lg:order-2' : ''}`}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <motion.div 
+                className="text-base font-bold text-[#FF6B35] mb-4 tracking-wide"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+              >
                 {step.number}
-              </div>
+              </motion.div>
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-[#0a0a0a] dark:text-white tracking-tight">
                 {step.title}
               </h3>
               <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 {step.description}
               </p>
-            </div>
-            <div className={`bg-[#fafafa] dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#2a2a2a] rounded-3xl p-12 min-h-[320px] flex items-center justify-center transition-all hover:shadow-2xl hover:-translate-y-1 ${
-              index % 2 === 1 ? 'lg:order-1' : ''
-            }`}>
+            </motion.div>
+
+            <motion.div 
+              className={`bg-[#fafafa] dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#2a2a2a] rounded-3xl p-12 min-h-[320px] flex items-center justify-center ${
+                index % 2 === 1 ? 'lg:order-1' : ''
+              }`}
+              initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ 
+                y: -4,
+                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                transition: { duration: 0.2 }
+              }}
+            >
               <div className="w-full">
-                <h4 className="text-xl mb-6 text-[#0a0a0a] dark:text-white font-bold">
+                <motion.h4 
+                  className="text-xl mb-6 text-[#0a0a0a] dark:text-white font-bold"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.5 }}
+                >
                   {step.number === 'STEP 01' && 'What You Get on the Call'}
                   {step.number === 'STEP 02' && 'During Development'}
                   {step.number === 'STEP 03' && 'After Launch'}
-                </h4>
-                <ul className="list-none text-gray-600 dark:text-gray-400">
+                </motion.h4>
+                <motion.ul 
+                  className="list-none text-gray-600 dark:text-gray-400"
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
                   {step.features.map((feature, idx) => (
-                    <li key={idx} className="py-3 text-[15px] flex items-center gap-3">
-                      <span className="text-[#FF6B35] font-bold text-lg">✓</span>
+                    <motion.li 
+                      key={idx} 
+                      className="py-3 text-[15px] flex items-center gap-3"
+                      variants={listItemVariants}
+                    >
+                      <motion.span 
+                        className="text-[#FF6B35] font-bold text-lg"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: 0.1 * idx }}
+                      >
+                        ✓
+                      </motion.span>
                       {feature}
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

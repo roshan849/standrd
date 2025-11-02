@@ -1,9 +1,17 @@
+'use client'
+
+import { motion, useInView, useAnimation } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+
 export default function Pricing() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
   const plans = [
     {
       name: 'Refresh',
       description: 'Quick improvements to modernize your existing site',
-      price: '$500',
+      price: 500,
       term: 'One-time payment',
       features: [
         'Visual design refresh',
@@ -18,7 +26,7 @@ export default function Pricing() {
     {
       name: 'Complete',
       description: 'Full redesign from the ground up',
-      price: '$750',
+      price: 750,
       term: 'One-time payment',
       features: [
         'Complete website redesign',
@@ -36,7 +44,7 @@ export default function Pricing() {
     {
       name: 'Premium',
       description: 'Everything plus advanced features',
-      price: '$1,000',
+      price: 1000,
       term: 'One-time payment',
       features: [
         'Everything in Complete',
@@ -51,21 +59,93 @@ export default function Pricing() {
     },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.25,
+      },
+    },
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  }
+
+  // Counter component
+  const Counter = ({ finalPrice, duration = 2.5 }) => {
+    const [count, setCount] = useState(0)
+
+    useEffect(() => {
+      if (!isInView) return
+
+      let start = 0
+      const end = finalPrice
+      const totalFrames = Math.round(duration * 60)
+      let frame = 0
+
+      const counter = setInterval(() => {
+        frame++
+        const progress = frame / totalFrames
+        const eased = 1 - Math.pow(1 - progress, 3) // easeOutCubic
+        const value = Math.floor(start + eased * (end - start))
+        setCount(value)
+
+        if (frame === totalFrames) clearInterval(counter)
+      }, 1000 / 60)
+
+      return () => clearInterval(counter)
+    }, [isInView, finalPrice, duration])
+
+    return (
+      <motion.span
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
+        ${count.toLocaleString()}
+      </motion.span>
+    )
+  }
+
   return (
-    <div id="pricing" className="py-24 px-8 bg-white dark:bg-[#0a0a0a]">
-      <div className="text-center mb-16">
+    <section
+      id="pricing"
+      ref={ref}
+      className="py-24 px-8 bg-white dark:bg-[#0a0a0a] overflow-hidden"
+    >
+      <motion.div
+        className="text-center mb-16"
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
         <h2 className="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold tracking-tight text-[#0a0a0a] dark:text-white">
           Simple, honest pricing
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-[680px] mx-auto">
           One-time payment. No surprises. No monthly fees. Choose what fits your needs.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1280px] mx-auto">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1280px] mx-auto"
+      >
         {plans.map((plan, index) => (
-          <div
+          <motion.div
             key={index}
+            variants={cardVariants}
+            whileHover={{ scale: 1.03 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 12 }}
             className={`p-12 rounded-3xl relative transition-all flex flex-col ${
               plan.featured
                 ? 'bg-white dark:bg-[#0a0a0a] border-[3px] border-[#FF6B35] shadow-xl shadow-[#FF6B35]/15'
@@ -73,9 +153,14 @@ export default function Pricing() {
             } hover:border-gray-400 dark:hover:border-[#3a3a3a] hover:-translate-y-1 hover:shadow-2xl`}
           >
             {plan.badge && (
-              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#FF6B35] text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wide">
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 }}
+                className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#FF6B35] text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wide"
+              >
                 {plan.badge}
-              </span>
+              </motion.span>
             )}
 
             <h3 className="text-2xl mb-2 font-bold text-[#0a0a0a] dark:text-white">
@@ -86,7 +171,7 @@ export default function Pricing() {
             </p>
 
             <div className="text-6xl font-extrabold mb-1 text-[#0a0a0a] dark:text-white">
-              {plan.price}
+              <Counter finalPrice={plan.price} />
             </div>
             <div className="text-gray-400 dark:text-gray-600 text-[15px] mb-8">
               {plan.term}
@@ -94,20 +179,25 @@ export default function Pricing() {
 
             <ul className="list-none mb-8 flex-grow">
               {plan.features.map((feature, idx) => (
-                <li
+                <motion.li
                   key={idx}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.1 * idx, duration: 0.3 }}
                   className="py-3 text-gray-600 dark:text-gray-400 text-[15px] flex items-start gap-3"
                 >
                   <span className="text-[#FF6B35] font-bold text-lg flex-shrink-0">✓</span>
                   {feature}
-                </li>
+                </motion.li>
               ))}
             </ul>
 
-            <a
+            <motion.a
               href="https://cal.com/your-booking-link"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
               className={`w-full py-4 rounded-xl font-semibold text-base transition-all block text-center ${
                 plan.featured
                   ? 'bg-[#FF6B35] text-white hover:bg-[#ff5722]'
@@ -115,10 +205,10 @@ export default function Pricing() {
               } hover:-translate-y-0.5 hover:shadow-lg`}
             >
               Book Free Call
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </section>
   )
 }

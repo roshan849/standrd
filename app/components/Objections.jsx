@@ -35,9 +35,11 @@ export default function Objections() {
     },
   ]
 
+  const duplicatedObjections = [...objections, ...objections]; // Duplicate cards for seamless loop
+
   return (
-    <div className="py-24 px-8 bg-[#fafafa] dark:bg-[#0f0f0f]">
-      <div className="text-center mb-16">
+    <div className="py-24 bg-gradient-to-b from-[#fafafa] to-white dark:from-[#0f0f0f] dark:to-[#050505]">
+      <div className="text-center mb-16 px-8">
         <h2 className="text-4xl md:text-5xl lg:text-6xl mb-4 font-extrabold tracking-tight text-[#0a0a0a] dark:text-white">
           Still on the fence?
         </h2>
@@ -46,21 +48,28 @@ export default function Objections() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1280px] mx-auto">
-        {objections.map((obj, index) => (
-          <div
-            key={index}
-            className="p-10 bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-[#2a2a2a] rounded-2xl transition-all hover:shadow-xl hover:-translate-y-0.5"
-          >
-            <div className="text-4xl mb-4">{obj.icon}</div>
-            <h3 className="text-xl mb-4 font-bold text-[#0a0a0a] dark:text-white">
-              {obj.title}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-[15px]">
-              {obj.description}
-            </p>
-          </div>
-        ))}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#fafafa] dark:from-[#0f0f0f] to-transparent z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#fafafa] dark:from-[#0f0f0f] to-transparent z-10"></div>
+        
+        <div className="flex gap-6 px-8 pb-4 auto-scroll-cards">
+          {duplicatedObjections.map((obj, index) => (
+            <div
+              key={index}
+              className="flex-none w-[60vw] max-w-xl"
+            >
+              <div className="p-12 h-full bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-lg border border-gray-200/50 dark:border-[#2a2a2a]/50 rounded-3xl transition-all hover:shadow-2xl hover:-translate-y-1 hover:bg-white/90 dark:hover:bg-[#0a0a0a]/90">
+                <div className="md:text-5xl text-lg mb-6">{obj.icon}</div>
+                <h3 className="md:text-2xl text-sm mb-4 font-bold text-[#0a0a0a] dark:text-white">
+                  {obj.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed md:text-lg text-sm">
+                  {obj.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
