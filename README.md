@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+🌐 Standrd Web Corp — Portfolio Website
 
-## Getting Started
+A modern and responsive portfolio website built for Standrd Web Corp, a creative web solutions company that helps clients build, redesign, and grow their online presence.
+The website not only promotes the brand but also enables clients to book demo meetings, explore service packages, and connect directly with our team.
 
-First, run the development server:
+🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🖥️ Brand Promotion: Clean and professional design showcasing Standrd Web Corp’s services and mission.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📅 Book a Demo: Integrated meeting booking form to schedule client demos or consultations.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+💼 Service Packages: Interactive sections displaying pricing tiers and package details.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🧭 Responsive Design: Fully optimized for desktop, tablet, and mobile devices.
 
-## Learn More
+⚡ Smooth Animations: Subtle transitions and hover effects for a modern UI experience.
 
-To learn more about Next.js, take a look at the following resources:
+🔒 Contact Form with Validation: Secure and user-friendly contact form for client inquiries.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🧠 Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Frontend:
 
-## Deploy on Vercel
+Next.js / React
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Tailwind CSS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Framer Motion (for animations)
+
+Backend (optional / if used):
+
+Node.js & Express.js
+
+MongoDB Atlas (for storing demo meeting info or contact details)
+
+Deployment:
+
+Vercel / Netlify
