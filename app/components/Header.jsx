@@ -9,17 +9,17 @@ export default function Header({ theme, toggleTheme }) {
         <div className="flex items-center gap-4">
           <button
             onClick={toggleTheme}
-            className="w-12 h-12 border border-gray-200 dark:border-[#2a2a2a] bg-[#fafafa] dark:bg-[#1a1a1a] rounded-xl cursor-pointer flex items-center justify-center text-xl transition-all hover:bg-[#f5f5f5] dark:hover:bg-[#1a1a1a] hover:scale-105"
+            className="md:w-12 md:h-12 w-8  h-8 border border-gray-200 dark:border-[#2a2a2a] bg-[#fafafa] dark:bg-[#1a1a1a] rounded-xl cursor-pointer flex items-center justify-center text-xl transition-all hover:bg-[#f5f5f5] dark:hover:bg-[#1a1a1a] hover:scale-105"
             aria-label="Toggle theme"
           >
             <span>{theme === 'light' ? '🌙' : '☀️'}</span>
           </button>
           
           <a
-            href="https://cal.com/your-booking-link"
+            href="https://cal.com/roshan-matta"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-5 py-2.5 bg-[#0a0a0a] dark:bg-white text-white dark:text-[#0a0a0a] rounded-lg font-semibold text-[15px] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+            className="inline-block px-5 py-2.5 md:px-2 md:py-1.5 bg-[#0a0a0a] dark:bg-white text-white dark:text-[#0a0a0a] rounded-lg font-semibold md:text-[15px] text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg"
           >
             Book a Call
           </a>

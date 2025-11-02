@@ -105,17 +105,17 @@ export default function Features() {
             variants={itemVariants}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
           >
-            <div className="p-8 bg-white dark:bg-[#1a1a1a] rounded-[16px] transition-all duration-300 hover:shadow-[0_8px_16px_rgba(0,0,0,0.05)] group">
+            <div className="p-8 bg-white dark:bg-[#1a1a1a] rounded-[16px] transition-all duration-300 hover:shadow-[0_8px_16px_rgba(0,0,0,0.05)] group h-full flex flex-col">
               <motion.div 
-                className="w-16 h-16 mb-6 rounded-full bg-[#F2D8A9]/10 dark:bg-[#A6CDFE]/10 flex items-center justify-center"
+                className="w-16 h-16 mb-6 rounded-full bg-[#F2D8A9]/10 dark:bg-[#A6CDFE]/10 flex items-center justify-center flex-shrink-0"
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
               >
                 <feature.icon className="w-8 h-8 text-[#F2D8A9] dark:text-[#A6CDFE]" />
               </motion.div>
-              <h3 className="text-[1.375rem] mb-3 font-bold text-[#0a0a0a] dark:text-white">
+              <h3 className="text-[1.375rem] mb-3 font-bold text-[#0a0a0a] dark:text-white flex-shrink-0">
                 {feature.title}
               </h3>
-              <p className="text-[#575656] dark:text-gray-400 text-base leading-relaxed">
+              <p className="text-[#575656] dark:text-gray-400 text-base leading-relaxed flex-grow">
                 {feature.description}
               </p>
             </div>

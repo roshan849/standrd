@@ -19,12 +19,12 @@ export default function Hero() {
       
       <div className="flex gap-4 justify-center flex-wrap mb-16">
         <a
-          href="https://cal.com/mohammad-ashraf"
+          href="https://cal.com/roshan-matta"
           target="_blank"
           rel="noopener noreferrer"
           className="px-8 py-4 bg-[#FF6B35] text-white rounded-xl font-semibold text-[17px] transition-all hover:bg-[#ff5722] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#FF6B35]/30 inline-block"
         >
-          Book Free Call — See Your Design Preview
+          Book Free Call
         </a>
         <a
           href="#pricing"

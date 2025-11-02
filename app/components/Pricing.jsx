@@ -193,7 +193,7 @@ export default function Pricing() {
             </ul>
 
             <motion.a
-              href="https://cal.com/your-booking-link"
+              href="https://cal.com/roshan-matta"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}

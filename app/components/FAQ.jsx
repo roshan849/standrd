@@ -46,6 +46,93 @@ export default function FAQ() {
     setActiveIndex(activeIndex === index ? null : index)
   }
 
+  const highlightImportantWords = (text) => {
+    // Important words and phrases to highlight (sorted by length, longest first)
+    const importantTerms = [
+      'Yes, 100%',
+      'money-back guarantee',
+      '7-14 days',
+      'design preview',
+      'local customers',
+      'easy-to-use',
+      'No monthly fees',
+      '$5-20/month',
+      '$10-15/year',
+      'mobile-first',
+      '100%',
+      '14 days',
+      'Absolutely',
+      'ownership',
+      'mobile',
+      'Google',
+      'training',
+      'support',
+      'specialize',
+      'forever',
+      'free',
+      'SEO',
+    ]
+
+    const result = []
+    let lastIndex = 0
+    let keyCounter = 0
+
+    // Find all matches with their positions
+    const matches = []
+    importantTerms.forEach(term => {
+      const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      const regex = new RegExp(escapedTerm, 'gi')
+      const matchesForTerm = [...text.matchAll(regex)]
+      matchesForTerm.forEach(match => {
+        matches.push({
+          start: match.index,
+          end: match.index + match[0].length,
+          text: match[0],
+          term: term
+        })
+      })
+    })
+
+    // Sort by start position and remove overlapping matches (prefer longer matches)
+    matches.sort((a, b) => {
+      if (a.start !== b.start) return a.start - b.start
+      return b.end - a.end // Longer matches first when same start
+    })
+
+    // Remove overlapping matches
+    const nonOverlapping = []
+    matches.forEach(match => {
+      const overlaps = nonOverlapping.some(existing => 
+        !(match.end <= existing.start || match.start >= existing.end)
+      )
+      if (!overlaps) {
+        nonOverlapping.push(match)
+      }
+    })
+
+    // Build the result
+    nonOverlapping.forEach(match => {
+      // Add text before match
+      if (match.start > lastIndex) {
+        result.push(text.substring(lastIndex, match.start))
+      }
+      // Add highlighted match
+      result.push(
+        <span key={`highlight-${keyCounter++}`} className="font-semibold text-[#FF6B35] dark:text-[#FF6B35]">
+          {match.text}
+        </span>
+      )
+      lastIndex = match.end
+    })
+
+    // Add remaining text
+    if (lastIndex < text.length) {
+      result.push(text.substring(lastIndex))
+    }
+
+    return result.length > 0 ? result : text
+  }
+
   return (
     <div className="py-24 px-8 bg-white dark:bg-[#0a0a0a]">
       <div className="text-center mb-12">
@@ -86,7 +173,7 @@ export default function FAQ() {
               }`}
             >
               <div className="px-6 pb-6 text-gray-600 dark:text-gray-400 leading-relaxed">
-                {faq.answer}
+                {highlightImportantWords(faq.answer)}
               </div>
             </div>
           </div>
