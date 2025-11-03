@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'STANDRD — Stop Losing Customers to Your Outdated Website',
+  icons: {
+    icon: '/standrd_logo.jpg',
+  },
   description:
     'Get more local customers with a website that actually works. Professional redesign in 14 days. Money-back guarantee.',
 }

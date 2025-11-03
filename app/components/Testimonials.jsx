@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 export default function Testimonials() {
   const [isMobile, setIsMobile] = useState(false)
@@ -20,6 +21,7 @@ export default function Testimonials() {
       name: 'Sarah Mitchell',
       title: 'Owner, Mitchell Dental Care',
       initials: 'SM',
+      image: '/person1.png',
       review:
         'We went from 2–3 calls a week to 10–15 after the new site launched. The ROI was immediate. Best $750 I’ve spent on the business.',
     },
@@ -27,6 +29,7 @@ export default function Testimonials() {
       name: 'James Cooper',
       title: "Owner, Cooper's Pet Grooming",
       initials: 'JC',
+      image: '/person2.png',
       review:
         'I was skeptical at first, but they delivered exactly what they promised—on time and on budget. Way better than my old Wix site.',
     },
@@ -34,6 +37,7 @@ export default function Testimonials() {
       name: 'Lisa Rodriguez',
       title: 'Owner, Rodriguez Cleaning',
       initials: 'LR',
+      image: '/person3.png',
       review:
         'Finally, a site that looks good on phones! Most of my customers book services from their phone and it works perfectly now.',
     },
@@ -41,6 +45,7 @@ export default function Testimonials() {
       name: 'Michael Johnson',
       title: 'Owner, Johnson Landscaping',
       initials: 'MJ',
+      image: '/person4.png',
       review:
         'The free design preview convinced me immediately. They showed me exactly what my site would look like before I paid a dollar.',
     },
@@ -48,6 +53,7 @@ export default function Testimonials() {
       name: 'David Park',
       title: 'Owner, Park Auto Repair',
       initials: 'DP',
+      image: '/person5.png',
       review:
         'I was paying $50/month for a Squarespace site that looked terrible. Now I own my site outright and it actually brings in customers.',
     },
@@ -55,6 +61,7 @@ export default function Testimonials() {
       name: 'Amanda Torres',
       title: 'Owner, Bella Salon & Spa',
       initials: 'AT',
+      image: '/person6.png',
       review:
         'Professional, fast, and actually affordable. They explained everything clearly and made the whole process easy.',
     },
@@ -171,7 +178,7 @@ export default function Testimonials() {
                   <div className="relative flex-shrink-0">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#FF6B35] to-[#FFB400] p-[2px]" />
                     <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-[#1a1a1a] flex items-center justify-center font-semibold text-[#FF6B35] text-sm sm:text-base">
-                      {t.initials}
+                      <Image src={t.image} alt={t.name} fill className='object-cover rounded-full' />
                     </div>
                   </div>
                   <div className="min-w-0">
