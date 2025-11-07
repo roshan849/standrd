@@ -27,7 +27,7 @@ export default function ComparisonTable() {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {/* <tr>
               <td className="p-5 border-b border-gray-200 dark:border-[#2a2a2a] text-gray-600 dark:text-gray-400">
                 <strong>Cost</strong>
               </td>
@@ -40,7 +40,7 @@ export default function ComparisonTable() {
               <td className="p-5 border-b border-gray-200 dark:border-[#2a2a2a] text-gray-600 dark:text-gray-400">
                 $3,000-$10,000+
               </td>
-            </tr>
+            </tr> */}
             <tr>
               <td className="p-5 border-b border-gray-200 dark:border-[#2a2a2a] text-gray-600 dark:text-gray-400">
                 <strong>Timeline</strong>
