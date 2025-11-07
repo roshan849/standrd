@@ -344,13 +344,13 @@ export default function Pricing() {
             )}
 
             {/* Title */}
-            <h3 className="text-2xl mb-2 font-bold text-[#0a0a0a] dark:text-white flex items-center gap-2">
+            {/* <h3 className="text-2xl mb-2 font-bold text-[#0a0a0a] dark:text-white flex items-center gap-2">
               <span className="text-3xl">{plan.icon}</span> {plan.name}
             </h3>
 
             <p className="text-gray-600 dark:text-gray-400 text-[15px] mb-8">
               {plan.description}
-            </p>
+            </p> */}
 
             {/* Tier Label */}
             <div className="text-3xl font-extrabold mb-3 text-[#FF6B35] dark:text-[#FF6B35]">
@@ -376,10 +376,10 @@ export default function Pricing() {
               </div>
             </div>
 
-            {/* Starts From */}
-            <div className="text-gray-500 dark:text-gray-400 italic text-[15px] mb-8">
+             {/* Starts From */}
+            {/* <div className="text-gray-500 dark:text-gray-400 italic text-[15px] mb-8">
               Starts from <span className="text-[#FF6B35]">affordable rates</span>
-            </div>
+            </div>  */}
 
             {/* Features */}
             <ul className="list-none mb-8 flex-grow">
